@@ -80,7 +80,13 @@ public class GameManager : MonoBehaviour
             }
             editing = false;
         }
-        if(Input.gyro.userAcceleration.magnitude>.001f) light.transform.rotation = Input.gyro.attitude;
+        if (Input.gyro.userAcceleration.magnitude > .001f)
+        {
+            float moveHorizontal = Input.gyro.attitude.eulerAngles.x;
+            float moveVertical = Input.gyro.attitude.eulerAngles.y;
+            Quaternion rotation = Quaternion.Euler(moveHorizontal, 0.0f, moveVertical);
+            light.transform.rotation = rotation;
+        }
     }
     public void SpawnDice()
     {
@@ -105,6 +111,6 @@ public class GameManager : MonoBehaviour
     bool notAButton(Vector3 point)
     {
         Debug.Log(point);
-        return ((point.x<2 && point.x>-2)||((point.x < -2 || point.x > 2) && point.z>-.9f));
+        return ((point.x<1 && point.x>-1)||((point.x < -1 || point.x > 1) && point.z>-.8f));
     }
 }
