@@ -86,7 +86,8 @@ public class GameManager : MonoBehaviour
         if (Input.gyro.userAcceleration.magnitude > .001f)
         {
             Quaternion rotation = Quaternion.Euler(90 + Input.gyro.userAcceleration.x*100, Input.gyro.userAcceleration.y*100, 0);
-            light.transform.rotation = rotation;
+            light.transform.rotation = Quaternion.Lerp(Quaternion.Euler(90,0,0), Quaternion.Euler(90, 0, 0)* Quaternion.Euler(Input.gyro.userAcceleration), Time.deltaTime);
+
         }
     }
     public void SpawnDice()
@@ -112,6 +113,6 @@ public class GameManager : MonoBehaviour
     bool notAButton(Vector3 point)
     {
         Debug.Log(point);
-        return (point.x>1 || point.x<-1||point.z>-1.8f);
+        return (point.z>-2f);
     }
 }
