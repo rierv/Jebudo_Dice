@@ -89,8 +89,7 @@ public class GameManager : MonoBehaviour
             Vector3 previousEulerAngles = light.transform.eulerAngles;
             Vector3 gyroInput = -Input.gyro.rotationRateUnbiased;
 
-            Vector3 targetEulerAngles = previousEulerAngles + gyroInput * Time.deltaTime * Mathf.Rad2Deg;
-            targetEulerAngles.z = 0.0f;
+            Vector3 targetEulerAngles = previousEulerAngles + gyroInput * Time.deltaTime * Mathf.Rad2Deg /2;
 
             light.transform.eulerAngles = targetEulerAngles;
 
@@ -119,6 +118,6 @@ public class GameManager : MonoBehaviour
     bool notAButton(Vector3 point)
     {
         Debug.Log(point);
-        return (point.z>-3.5f);
+        return (point.z>-2.5f);
     }
 }
