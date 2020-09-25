@@ -44,8 +44,8 @@ public class Dice : MonoBehaviour
 
     private void StartPaint()
     {
-        go = (GameObject)Instantiate(ColorPickedPrefab, transform.position + Vector3.up * 3f, Quaternion.identity);
-        go.transform.localScale = Vector3.one * 1.5f;
+        go = (GameObject)Instantiate(ColorPickedPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
+        go.transform.localScale = Vector3.one;
         go.transform.LookAt(Vector3.up*1000000);
         if(transform.position.x<0) go.transform.position += (Vector3.right * .2f);
         else go.transform.position -= (Vector3.right * .2f);
@@ -72,7 +72,7 @@ public class Dice : MonoBehaviour
             Debug.DrawRay(contact.point, contact.normal, Color.white);
             dice.AddForce(contact.normal * 5);
         }
-        if (collision.gameObject.name=="Terrain" && collision.relativeVelocity.magnitude > .1f)
+        if (collision.gameObject.name=="Terrain" && collision.relativeVelocity.magnitude > .01f)
         {
             audioSource[count].Play();
             count = (count + 1) % 2;
