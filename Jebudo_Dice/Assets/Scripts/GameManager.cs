@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     float time=0;
     bool editing = false;
     public GameObject light;
+    List<Dice> paintingDices = new List<Dice>();
     void Start()
     {
         
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
                 {
 
                     GameObject touchedObject = hit.transform.gameObject;
-                    if (touchedObject.name == "Terrain")
+                    if (touchedObject.name == "Terrain" && paintingDices.Count==0)
                     {
 
                         foreach (Rigidbody dice in rbList)
@@ -64,6 +65,8 @@ public class GameManager : MonoBehaviour
             if (time > 1)
             {
                 selectedDiceforPainting.EditColor();
+                if (paintingDices.Contains(selectedDiceforPainting)) paintingDices.Remove(selectedDiceforPainting);
+                else paintingDices.Add(selectedDiceforPainting);
                 time = 0;
                 editing = true;
             }
@@ -82,7 +85,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.gyro.userAcceleration.magnitude > .001f)
         {
-            Quaternion rotation = Quaternion.Euler(90 + Input.gyro.userAcceleration.x, Input.gyro.userAcceleration.y, 0);
+            Quaternion rotation = Quaternion.Euler(90 + Input.gyro.userAcceleration.x*100, Input.gyro.userAcceleration.y*100, 0);
             light.transform.rotation = rotation;
         }
     }
@@ -109,6 +112,6 @@ public class GameManager : MonoBehaviour
     bool notAButton(Vector3 point)
     {
         Debug.Log(point);
-        return (point.x>1 || point.x<-1||point.z>-2f);
+        return (point.x>1 || point.x<-1||point.z>-1.8f);
     }
 }
