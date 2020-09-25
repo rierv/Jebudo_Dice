@@ -70,12 +70,12 @@ public class Dice : MonoBehaviour
         foreach (ContactPoint contact in collision.contacts)
         {
             Debug.DrawRay(contact.point, contact.normal, Color.white);
-            dice.AddForce(contact.normal * 5);
+            dice.AddForce(contact.normal * 10);
         }
-        if (collision.gameObject.name=="Terrain" && collision.relativeVelocity.magnitude > .01f)
+        if (collision.gameObject.name=="Terrain" && collision.relativeVelocity.magnitude > .1f)
         {
             audioSource[count].Play();
-            count = (count + 1) % 2;
+            count = (count + (int)Random.Range(0, 4)) % 2;
         }
     }
 }
