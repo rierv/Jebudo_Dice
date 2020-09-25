@@ -44,11 +44,11 @@ public class Dice : MonoBehaviour
 
     private void StartPaint()
     {
-        go = (GameObject)Instantiate(ColorPickedPrefab, transform.position + Vector3.up * 1.4f, Quaternion.identity);
+        go = (GameObject)Instantiate(ColorPickedPrefab, transform.position + Vector3.up * 3f, Quaternion.identity);
         go.transform.localScale = Vector3.one * 1.5f;
         go.transform.LookAt(Vector3.up*1000000);
-        if(transform.position.x<0) go.transform.position += (Vector3.right * 2);
-        else go.transform.position -= (Vector3.right * 2);
+        if(transform.position.x<0) go.transform.position += (Vector3.right * .2f);
+        else go.transform.position -= (Vector3.right * .2f);
         go.transform.parent = transform;
         dice.isKinematic = true;
         CP = go.GetComponent<ColorPickerTriangle>();

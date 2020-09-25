@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         {
             float moveHorizontal = Input.gyro.attitude.eulerAngles.x;
             float moveVertical = Input.gyro.attitude.eulerAngles.y;
-            Quaternion rotation = Quaternion.Euler(moveHorizontal, 0.0f, moveVertical);
+            Quaternion rotation = Quaternion.Euler(0, moveHorizontal+moveVertical, 0);
             light.transform.rotation = rotation;
         }
     }
@@ -111,6 +111,6 @@ public class GameManager : MonoBehaviour
     bool notAButton(Vector3 point)
     {
         Debug.Log(point);
-        return ((point.x<1 && point.x>-1)||((point.x < -1 || point.x > 1) && point.z>-.8f));
+        return ((point.x>1 && point.x<-1)||point.z>-.8f);
     }
 }
