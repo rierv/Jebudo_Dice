@@ -46,8 +46,8 @@ public class GameManager : MonoBehaviour
 
                         foreach (Rigidbody dice in rbList)
                         {
-                            dice.AddForce(new Vector3(Random.Range(-1, 1), Random.Range(2, 5), Random.Range(-1.5f, 1.5f)) * 200);
-                            dice.AddTorque((transform.up * Random.Range(-2, 2) + transform.forward * Random.Range(-2, 2) + transform.right * Random.Range(-2, 2)) * 150);
+                            dice.AddForce(new Vector3(Random.Range(-1, 1), Random.Range(4, 5), Random.Range(-1.5f, 1.5f)) * 500);
+                            dice.AddTorque((transform.up * Random.Range(-2, 2) + transform.forward * Random.Range(-2, 2) + transform.right * Random.Range(-2, 2)) * 500);
                         }
                     }
                     else if (diceList.Contains(touchedObject))
@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviour
             if (!editing)
             {
                 Rigidbody tmprb = selectedDiceforPainting.gameObject.GetComponent<Rigidbody>();
-                tmprb.AddForce(new Vector3(Random.Range(-1, 1), Random.Range(2, 5), Random.Range(-1.5f, 1.5f)) * 200);
-                tmprb.AddTorque((transform.up * Random.Range(-2, 2) + transform.forward * Random.Range(-2, 2) + transform.right * Random.Range(-2, 2)) * 150);
+                tmprb.AddForce(new Vector3(Random.Range(-1, 1), Random.Range(4, 5), Random.Range(-1.5f, 1.5f)) * 500);
+                tmprb.AddTorque((transform.up * Random.Range(-2, 2) + transform.forward * Random.Range(-2, 2) + transform.right * Random.Range(-2, 2)) * 500);
             }
             editing = false;
         }
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
 
             Vector3 targetEulerAngles = previousEulerAngles + gyroInput * Time.deltaTime * Mathf.Rad2Deg /2;
 
-            light.transform.eulerAngles = targetEulerAngles;
+            if(targetEulerAngles.x<140 && targetEulerAngles.x > 50 && targetEulerAngles.y>-50&& targetEulerAngles.y < 50 && targetEulerAngles.z > -50 && targetEulerAngles.z < 50) light.transform.eulerAngles = targetEulerAngles;
 
         }
     }
