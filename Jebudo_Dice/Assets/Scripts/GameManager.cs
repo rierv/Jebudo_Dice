@@ -85,14 +85,8 @@ public class GameManager : MonoBehaviour
         }
         if (Input.gyro.userAcceleration.magnitude > .001f)
         {
-            
-            Vector3 previousEulerAngles = light.transform.eulerAngles;
-            Vector3 gyroInput = -Input.gyro.rotationRateUnbiased;
 
-            Vector3 targetEulerAngles = previousEulerAngles + gyroInput * Time.deltaTime * Mathf.Rad2Deg /2;
-
-            light.transform.eulerAngles = targetEulerAngles;
-
+            light.transform.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0);
         }
         light.transform.eulerAngles = Vector3.Lerp(light.transform.eulerAngles, new Vector3(90,0,0), .2f*Time.deltaTime);
     }

@@ -70,7 +70,7 @@ public class Dice : MonoBehaviour
         foreach (ContactPoint contact in collision.contacts)
         {
             Debug.DrawRay(contact.point, contact.normal, Color.white);
-            dice.AddForce(contact.normal * 200);
+            dice.AddForce(contact.normal * 250);
         }
         if (collision.gameObject.name=="Terrain" && collision.relativeVelocity.magnitude > .1f)
         {
