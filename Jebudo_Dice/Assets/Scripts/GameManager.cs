@@ -91,9 +91,10 @@ public class GameManager : MonoBehaviour
 
             Vector3 targetEulerAngles = previousEulerAngles + gyroInput * Time.deltaTime * Mathf.Rad2Deg /2;
 
-            if(targetEulerAngles.x<140 && targetEulerAngles.x > 50 && targetEulerAngles.y>-50&& targetEulerAngles.y < 50 && targetEulerAngles.z > -50 && targetEulerAngles.z < 50) light.transform.eulerAngles = targetEulerAngles;
+            light.transform.eulerAngles = targetEulerAngles;
 
         }
+        light.transform.eulerAngles = Vector3.Lerp(light.transform.eulerAngles, new Vector3(90,0,0), .2f*Time.deltaTime);
     }
     public void SpawnDice()
     {
